@@ -128,6 +128,7 @@ namespace EncryptionFiles
             btnAdd.BackgroundImageLayout = ImageLayout.Zoom;
         }
       
+
         private void FetchFiles(string Path)
         {
             var files = Directory.EnumerateFiles(Path);
@@ -135,10 +136,27 @@ namespace EncryptionFiles
             {
                
                 string outputFile = clsUtility.CreatName(ConfigurationManager.AppSettings["DFiles"], file);
-                clsUtility.DecryptFile(file,file , Key);
-                MessageBox.Show("Done");
+                clsUtility.DecryptFile(file, outputFile, Key);
+
+                ctrlImage ctrl = new ctrlImage();
+                ctrl.Source(outputFile);
+                ctrl.DoupleClickOnPicturePox += Ctrl_DoupleClickOnPicturePox;
+                flpDialog.Controls.Add(ctrl);
             }
         }
+
+        private void Ctrl_DoupleClickOnPicturePox(object sender, ctrlImage.PicturPoxEventArgs e)
+        {
+            ctrlImage ctrl = (ctrlImage)sender;
+            frmInspectImage frm = new frmInspectImage(ctrl.ImageLocation);
+            frm.Show();
+        }
+
+        private void Ctrl_DoubleClick(object sender, EventArgs e)
+        {
+           
+        }
+
         private void pbGallery_DoubleClick(object sender, EventArgs e)
         {
             flpDialog.Controls.Clear();
