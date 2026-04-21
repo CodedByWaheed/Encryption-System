@@ -1,0 +1,12 @@
+E:\MyProjects\Encryption App\EncryptionFiles\bin\Debug\EncryptionFiles.exe.config
+E:\MyProjects\Encryption App\EncryptionFiles\bin\Debug\EncryptionFiles.exe
+E:\MyProjects\Encryption App\EncryptionFiles\bin\Debug\EncryptionFiles.pdb
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.csproj.AssemblyReference.cache
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.Properties.Resources.resources
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.csproj.GenerateResource.cache
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.csproj.CoreCompileInputs.cache
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.exe
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.pdb
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.frmMain.resources
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.frmAddNewFile.resources
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.frmSetting.resources
