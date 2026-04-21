@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Configuration;
 
 namespace EncryptionFiles
 {
@@ -34,10 +36,9 @@ namespace EncryptionFiles
                     break;
             }
         }
-            
-        }
+       
 
-
+      
 
         private void pbAudio_MouseEnter(object sender, EventArgs e)
         {
@@ -69,9 +70,11 @@ namespace EncryptionFiles
             pbGallery.Image = Resources.folder;
         }
 
+        string Key = "1234567890123456";
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string Key = "1234567890123456";
+           
+
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Title = "Select a file";
@@ -124,20 +127,34 @@ namespace EncryptionFiles
         {
             btnAdd.BackgroundImageLayout = ImageLayout.Zoom;
         }
-
+      
+        private void FetchFiles(string Path)
+        {
+            var files = Directory.EnumerateFiles(Path);
+            foreach (var file in files)
+            {
+               
+                string outputFile = clsUtility.CreatName(ConfigurationManager.AppSettings["DFiles"], file);
+                clsUtility.DecryptFile(file,file , Key);
+                MessageBox.Show("Done");
+            }
+        }
         private void pbGallery_DoubleClick(object sender, EventArgs e)
         {
-
+            flpDialog.Controls.Clear();
+            FetchFiles(ConfigurationManager.AppSettings["Images"]);
         }
 
         private void pbVideo_DoubleClick(object sender, EventArgs e)
         {
-
+            flpDialog.Controls.Clear();
+            FetchFiles(ConfigurationManager.AppSettings["Videos"]);
         }
 
         private void pbAudio_DoubleClick(object sender, EventArgs e)
         {
-
+            flpDialog.Controls.Clear();
+            FetchFiles(ConfigurationManager.AppSettings["Audios"]);
         }
     }
 }

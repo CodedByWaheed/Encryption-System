@@ -6,6 +6,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Diagnostics;
 
 namespace EncryptionFiles
 {
@@ -23,7 +25,7 @@ namespace EncryptionFiles
         }
         
         // CreateHiddenFolderIfDoesNotExist(string FolderPath)
-        private static bool CreateFolderIfDoesNotExist(string FolderPath)
+        private static bool CreateFolderIfDoesNotExist(string FolderPath, bool Hidden = false)
         {
 
             // Check if the folder exists
@@ -33,6 +35,8 @@ namespace EncryptionFiles
                 {
                     // If it doesn't exist, create the folder
                     Directory.CreateDirectory(FolderPath);
+                    if(Hidden) 
+                        File.SetAttributes(FolderPath, FileAttributes.Hidden);
                     return true;
                 }
                 catch (Exception ex)
@@ -68,20 +72,20 @@ namespace EncryptionFiles
             {
                
                 case enFileType.Images:
-                     DestinationFolder = @"\EncryptionFiles\Images\";
+                     DestinationFolder = ConfigurationManager.AppSettings["Images"];
                     break;
                 case enFileType.Videos:
-                     DestinationFolder = @"\EncryptionFiles\Videos\";
+                     DestinationFolder = ConfigurationManager.AppSettings["Videos"];
                     break;
                 case enFileType.audio:
-                     DestinationFolder = @"\EncryptionFiles\Audios\";
+                     DestinationFolder = ConfigurationManager.AppSettings["Audios"];
                     break;
                 default:
-                     DestinationFolder = @"\EncryptionFiles\Garbage\";
+                     DestinationFolder = ConfigurationManager.AppSettings["Garbage"];
                     break ;
             }
            
-            if (!CreateFolderIfDoesNotExist(DestinationFolder))
+            if (!CreateFolderIfDoesNotExist(DestinationFolder, true))
             {
                 return false;
             }
@@ -94,18 +98,25 @@ namespace EncryptionFiles
                 {
                     iv = aesAlg.IV;
                 }
+                File.WriteAllBytes(destinationFile, iv);
                 EncryptFile(sourceFile, destinationFile, Key, iv);
-
+                
             }
             catch (IOException iox)
             {
-                MessageBox.Show(iox.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!EventLog.SourceExists(ConfigurationManager.AppSettings["AppName"]))
+                {
+                    EventLog.CreateEventSource(ConfigurationManager.AppSettings["AppName"], "Application");
+                }
+                EventLog.WriteEntry(ConfigurationManager.AppSettings["AppName"], $"{iox} : from Fun CopyFileToEncryptionFolder", EventLogEntryType.Error);
                 return false;
             }
 
             sourceFile = destinationFile;
             return true;
         }
+
+
 
         static List<string> ImageExtn = new List<string> { ".jpg", ".jpeg",".png",".bmp" ,".gif" };
         static List<string> VideoExtn = new List<string> { ".mp4", ".avi", ".mkv", ".mov" };
@@ -165,6 +176,8 @@ namespace EncryptionFiles
                     // Write the IV to the beginning of the file
                     fsOutput.Write(iv, 0, iv.Length);
                     fsInput.CopyTo(cryptoStream);
+                    // i add this line
+                    cryptoStream.FlushFinalBlock();
                 }
             }
         }
@@ -186,6 +199,33 @@ namespace EncryptionFiles
                 }
             }
         }
+        public static string CreatName(string Path , string Image)
+        {
+            if(CreateFolderIfDoesNotExist(Path , true))
+                return Path + ReplaceFileNameWithGUID(Image);
+            return "";
+        }
+        public static void DecryptFile(string inputFile, string outputFile, string key)
+        {
+            byte[] fileData = File.ReadAllBytes(inputFile);
 
+            byte[] iv = fileData.Take(16).ToArray();
+            byte[] cipher = fileData.Skip(16).ToArray();
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = System.Text.Encoding.UTF8.GetBytes(key);
+                aesAlg.IV = iv;
+
+                using (FileStream fsInput = new FileStream(inputFile, FileMode.Open))
+                using (FileStream fsOutput = new FileStream(outputFile, FileMode.Create))
+                using (ICryptoTransform decryptor = aesAlg.CreateDecryptor())
+                using (CryptoStream cryptoStream = new CryptoStream(fsOutput, decryptor, CryptoStreamMode.Write))
+                {
+                    // Skip the IV at the beginning of the file
+                    fsInput.Seek(iv.Length, SeekOrigin.Begin);
+                    fsInput.CopyTo(cryptoStream);
+                }
+            }
+        }
     }
 }
