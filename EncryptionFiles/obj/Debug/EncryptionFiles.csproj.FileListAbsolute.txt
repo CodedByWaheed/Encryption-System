@@ -10,3 +10,11 @@ E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.pdb
 E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.frmMain.resources
 E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.frmAddNewFile.resources
 E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.frmSetting.resources
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.ctrlImage.resources
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.frmInspectImage.resources
+E:\MyProjects\Encryption App\EncryptionFiles\bin\Debug\Interop.WMPLib.dll
+E:\MyProjects\Encryption App\EncryptionFiles\bin\Debug\AxInterop.WMPLib.dll
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\Interop.WMPLib.dll
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\AxInterop.WMPLib.dll
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.csproj.ResolveComReference.cache
+E:\MyProjects\Encryption App\EncryptionFiles\obj\Debug\EncryptionFiles.frmInspectVideoNAudio.resources

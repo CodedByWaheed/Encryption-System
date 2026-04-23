@@ -62,7 +62,7 @@ namespace EncryptionFiles
 
         public enum enFileType { Images = 1 , Videos = 2 , audio = 3, Garbage = 4}
         
-        public static bool CopyFileToEncryptionFolder(string sourceFile,string Key , enFileType FileType)
+        public static bool MoveFileToEncryptionFolder(string sourceFile,string Key , enFileType FileType)
         {
             // this funciton will copy the image to the
             // project images foldr after renaming it
@@ -100,6 +100,7 @@ namespace EncryptionFiles
                 }
                 File.WriteAllBytes(destinationFile, iv);
                 EncryptFile(sourceFile, destinationFile, Key, iv);
+                File.Delete(sourceFile);
                 
             }
             catch (IOException iox)

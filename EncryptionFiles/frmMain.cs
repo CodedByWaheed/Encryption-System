@@ -16,26 +16,14 @@ namespace EncryptionFiles
 {
     public partial class frmMain: Form
     {
+
+        string _Path;
         public frmMain()
         {
             InitializeComponent();
         }
         enum enDataType { Photo = 1 , Video = 2 , Audio = 3}
-        private void _LoadData(enDataType Type)
-        {
-            switch (Type) 
-            {
-                case enDataType.Photo:
-
-                    break;
-                case enDataType.Video: 
-                    
-                    break;
-                case enDataType.Audio:
-                    
-                    break;
-            }
-        }
+       
        
 
       
@@ -95,13 +83,13 @@ namespace EncryptionFiles
                     switch (clsUtility.CompareFileType(filePath))
                     {
                         case clsUtility.enFileType.Images:
-                            clsUtility.CopyFileToEncryptionFolder(filePath,Key , clsUtility.enFileType.Images);
+                            clsUtility.MoveFileToEncryptionFolder(filePath,Key , clsUtility.enFileType.Images);
                             break;
                         case clsUtility.enFileType.Videos:
-                            clsUtility.CopyFileToEncryptionFolder(filePath,Key, clsUtility.enFileType.Videos);   
+                            clsUtility.MoveFileToEncryptionFolder(filePath,Key, clsUtility.enFileType.Videos);   
                             break;
                         case clsUtility.enFileType.audio:
-                            clsUtility.CopyFileToEncryptionFolder(filePath,Key, clsUtility.enFileType.audio);      
+                            clsUtility.MoveFileToEncryptionFolder(filePath,Key, clsUtility.enFileType.audio);      
                             break;
                             
                     }
@@ -129,7 +117,7 @@ namespace EncryptionFiles
         }
       
 
-        private void FetchFiles(string Path)
+        private void FetchImageFiles(string Path)
         {
             var files = Directory.EnumerateFiles(Path);
             foreach (var file in files)
@@ -141,38 +129,66 @@ namespace EncryptionFiles
                 ctrlImage ctrl = new ctrlImage();
                 ctrl.Source(outputFile);
                 ctrl.DoupleClickOnPicturePox += Ctrl_DoupleClickOnPicturePox;
+                
+                flpDialog.Controls.Add(ctrl);
+            }
+        }
+        private void FetchVideoNAudioFiles(string Path)
+        {
+            var files = Directory.EnumerateFiles(Path);
+            foreach (var file in files)
+            {
+
+                string outputFile = clsUtility.CreatName(ConfigurationManager.AppSettings["DFiles"], file);
+                clsUtility.DecryptFile(file, outputFile, Key);
+
+                ctrlImage ctrl = new ctrlImage();
+                ctrl.Source(outputFile);
+                ctrl.DoupleClickOnPicturePox += Ctrl_DoupleClickOnPicturePoxForVideoNAudio; ;
+
                 flpDialog.Controls.Add(ctrl);
             }
         }
 
-        private void Ctrl_DoupleClickOnPicturePox(object sender, ctrlImage.PicturPoxEventArgs e)
+      
+        
+        private void Ctrl_DoupleClickOnPicturePoxForVideoNAudio(object sender, ctrlImage.PicturPoxEventArgs e)
         {
-            ctrlImage ctrl = (ctrlImage)sender;
-            frmInspectImage frm = new frmInspectImage(ctrl.ImageLocation);
+            frmInspectVideoNAudio frm = new frmInspectVideoNAudio(e.ImageLocation);
+       
             frm.Show();
         }
-
-        private void Ctrl_DoubleClick(object sender, EventArgs e)
+        private void Ctrl_DoupleClickOnPicturePox(object sender, ctrlImage.PicturPoxEventArgs e)
         {
-           
+            frmInspectImage frm = new frmInspectImage(e.ImageLocation);
+          
+            frm.Show();
         }
+     
 
+        
+ 
         private void pbGallery_DoubleClick(object sender, EventArgs e)
         {
             flpDialog.Controls.Clear();
-            FetchFiles(ConfigurationManager.AppSettings["Images"]);
+            FetchImageFiles(ConfigurationManager.AppSettings["Images"]);
         }
 
         private void pbVideo_DoubleClick(object sender, EventArgs e)
         {
             flpDialog.Controls.Clear();
-            FetchFiles(ConfigurationManager.AppSettings["Videos"]);
+            FetchVideoNAudioFiles(ConfigurationManager.AppSettings["Videos"]);
         }
 
         private void pbAudio_DoubleClick(object sender, EventArgs e)
         {
             flpDialog.Controls.Clear();
-            FetchFiles(ConfigurationManager.AppSettings["Audios"]);
+            FetchVideoNAudioFiles(ConfigurationManager.AppSettings["Audios"]);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
