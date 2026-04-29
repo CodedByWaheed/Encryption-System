@@ -32,36 +32,36 @@
             this.label2 = new System.Windows.Forms.Label();
             this.flpDialog = new System.Windows.Forms.FlowLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pbGallery = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.pbVideo = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.pbAudio = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.sittingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
-            this.pbGallery = new System.Windows.Forms.PictureBox();
-            this.pbVideo = new System.Windows.Forms.PictureBox();
-            this.pbAudio = new System.Windows.Forms.PictureBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.flpDialog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGallery)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGallery)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbAudio)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -119,6 +119,20 @@
             this.splitContainer1.SplitterDistance = 85;
             this.splitContainer1.TabIndex = 3;
             // 
+            // pbGallery
+            // 
+            this.pbGallery.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbGallery.Image = global::EncryptionFiles.Properties.Resources.folder;
+            this.pbGallery.Location = new System.Drawing.Point(0, 0);
+            this.pbGallery.Name = "pbGallery";
+            this.pbGallery.Size = new System.Drawing.Size(125, 85);
+            this.pbGallery.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbGallery.TabIndex = 0;
+            this.pbGallery.TabStop = false;
+            this.pbGallery.DoubleClick += new System.EventHandler(this.pbGallery_DoubleClick);
+            this.pbGallery.MouseEnter += new System.EventHandler(this.pbGallery_MouseEnter);
+            this.pbGallery.MouseLeave += new System.EventHandler(this.pbGallery_MouseLeave);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -145,6 +159,22 @@
             this.splitContainer2.SplitterDistance = 85;
             this.splitContainer2.TabIndex = 4;
             // 
+            // pbVideo
+            // 
+            this.pbVideo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbVideo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbVideo.Image = global::EncryptionFiles.Properties.Resources.folder;
+            this.pbVideo.Location = new System.Drawing.Point(0, 0);
+            this.pbVideo.Name = "pbVideo";
+            this.pbVideo.Size = new System.Drawing.Size(125, 85);
+            this.pbVideo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbVideo.TabIndex = 1;
+            this.pbVideo.TabStop = false;
+            this.pbVideo.Click += new System.EventHandler(this.pbVideo_Click);
+            this.pbVideo.DoubleClick += new System.EventHandler(this.pbVideo_DoubleClick);
+            this.pbVideo.MouseEnter += new System.EventHandler(this.pbVideo_MouseEnter);
+            this.pbVideo.MouseLeave += new System.EventHandler(this.pbVideo_MouseLeave);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -170,6 +200,21 @@
             this.splitContainer3.Size = new System.Drawing.Size(125, 114);
             this.splitContainer3.SplitterDistance = 85;
             this.splitContainer3.TabIndex = 5;
+            // 
+            // pbAudio
+            // 
+            this.pbAudio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbAudio.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbAudio.Image = global::EncryptionFiles.Properties.Resources.folder;
+            this.pbAudio.Location = new System.Drawing.Point(0, 0);
+            this.pbAudio.Name = "pbAudio";
+            this.pbAudio.Size = new System.Drawing.Size(125, 85);
+            this.pbAudio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbAudio.TabIndex = 2;
+            this.pbAudio.TabStop = false;
+            this.pbAudio.DoubleClick += new System.EventHandler(this.pbAudio_DoubleClick);
+            this.pbAudio.MouseEnter += new System.EventHandler(this.pbAudio_MouseEnter);
+            this.pbAudio.MouseLeave += new System.EventHandler(this.pbAudio_MouseLeave);
             // 
             // label5
             // 
@@ -226,50 +271,6 @@
             this.btnNext.TabIndex = 8;
             this.btnNext.UseVisualStyleBackColor = false;
             // 
-            // pbGallery
-            // 
-            this.pbGallery.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbGallery.Image = global::EncryptionFiles.Properties.Resources.folder;
-            this.pbGallery.Location = new System.Drawing.Point(0, 0);
-            this.pbGallery.Name = "pbGallery";
-            this.pbGallery.Size = new System.Drawing.Size(125, 85);
-            this.pbGallery.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbGallery.TabIndex = 0;
-            this.pbGallery.TabStop = false;
-            this.pbGallery.DoubleClick += new System.EventHandler(this.pbGallery_DoubleClick);
-            this.pbGallery.MouseEnter += new System.EventHandler(this.pbGallery_MouseEnter);
-            this.pbGallery.MouseLeave += new System.EventHandler(this.pbGallery_MouseLeave);
-            // 
-            // pbVideo
-            // 
-            this.pbVideo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbVideo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbVideo.Image = global::EncryptionFiles.Properties.Resources.folder;
-            this.pbVideo.Location = new System.Drawing.Point(0, 0);
-            this.pbVideo.Name = "pbVideo";
-            this.pbVideo.Size = new System.Drawing.Size(125, 85);
-            this.pbVideo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbVideo.TabIndex = 1;
-            this.pbVideo.TabStop = false;
-            this.pbVideo.DoubleClick += new System.EventHandler(this.pbVideo_DoubleClick);
-            this.pbVideo.MouseEnter += new System.EventHandler(this.pbVideo_MouseEnter);
-            this.pbVideo.MouseLeave += new System.EventHandler(this.pbVideo_MouseLeave);
-            // 
-            // pbAudio
-            // 
-            this.pbAudio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbAudio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbAudio.Image = global::EncryptionFiles.Properties.Resources.folder;
-            this.pbAudio.Location = new System.Drawing.Point(0, 0);
-            this.pbAudio.Name = "pbAudio";
-            this.pbAudio.Size = new System.Drawing.Size(125, 85);
-            this.pbAudio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbAudio.TabIndex = 2;
-            this.pbAudio.TabStop = false;
-            this.pbAudio.DoubleClick += new System.EventHandler(this.pbAudio_DoubleClick);
-            this.pbAudio.MouseEnter += new System.EventHandler(this.pbAudio_MouseEnter);
-            this.pbAudio.MouseLeave += new System.EventHandler(this.pbAudio_MouseLeave);
-            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.Transparent;
@@ -312,21 +313,21 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbGallery)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbVideo)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             this.splitContainer3.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbAudio)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbGallery)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbVideo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbAudio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

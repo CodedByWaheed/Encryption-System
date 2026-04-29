@@ -190,5 +190,10 @@ namespace EncryptionFiles
         {
 
         }
+
+        private void pbVideo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

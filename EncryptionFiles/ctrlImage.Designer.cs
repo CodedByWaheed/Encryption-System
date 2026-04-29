@@ -41,6 +41,7 @@
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbImage.TabIndex = 0;
             this.pbImage.TabStop = false;
+            this.pbImage.Click += new System.EventHandler(this.pbImage_Click);
             this.pbImage.DoubleClick += new System.EventHandler(this.pbImage_DoubleClick);
             // 
             // ctrlImage

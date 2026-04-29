@@ -53,5 +53,10 @@ namespace EncryptionFiles
         {
             OnDoupleClickOnPicturePox(_ImageLocation);
         }
+
+        private void pbImage_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
